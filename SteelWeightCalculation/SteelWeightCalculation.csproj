@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DescriptionReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SteelPart.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PartTypes\" />
