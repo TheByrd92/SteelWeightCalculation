@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DescriptionReader.cs" />
+    <Compile Include="PartTypes\ChildBlankPart.cs" />
     <Compile Include="PartTypes\CShape.cs" />
     <Compile Include="PartTypes\EndwallCornerColumn.cs" />
     <Compile Include="PartTypes\EndwallJAMB.cs" />
