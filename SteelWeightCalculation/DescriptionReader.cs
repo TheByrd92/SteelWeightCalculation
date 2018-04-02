@@ -1,5 +1,6 @@
 ﻿using SteelWeightCalculation.PartTypes;
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace SteelWeightCalculation
@@ -49,8 +50,10 @@ namespace SteelWeightCalculation
         /// </summary>
         /// <param name="description">The full description of your steel part.</param>
         /// <param name="knownLength">Needs a valid length or weight may not be calculated.</param>
-        public void CalculateWeightFor(string description, double knownLength)
+        /// <param name="possibleChildren">This steel part may have children.</param>
+        public double CalculateWeightFor(string description, double knownLength, List<SteelPart> possibleChildren = null)
         {
+            double toReturn = -1;
             foreach (SteelParts steelParts in Enum.GetValues(typeof(SteelParts)))
             {
                 SteelPart toCalculate = null;
@@ -135,8 +138,25 @@ namespace SteelWeightCalculation
                 }
                 #endregion
                 if (toCalculate != null)
+                {
+                    if(possibleChildren != null)
+                        AddInChildren(toCalculate, possibleChildren);
+                    toCalculate.fullDescription = description;
                     toCalculate.length = knownLength;
                     toCalculate.CalculateWeight();
+                    toCalculate.AddChildrenToTotalWeight();
+                    toReturn = toCalculate.weight;
+                    break;
+                }
+            }
+            return toReturn;
+        }
+
+        private void AddInChildren(SteelPart steelPartParent, List<SteelPart> steelPartChildren)
+        {
+            foreach (var item in steelPartChildren)
+            {
+                steelPartParent.steelPartChildren.Add(item);
             }
         }
     }

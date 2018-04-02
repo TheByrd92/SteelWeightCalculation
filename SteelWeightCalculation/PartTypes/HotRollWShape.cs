@@ -16,6 +16,14 @@ namespace SteelWeightCalculation.PartTypes
             WeightPerFoot
         }
 
+        public override void AddChildrenToTotalWeight()
+        {
+            foreach (var item in steelPartChildren)
+            {
+                this.weight += item.weight;
+            }
+        }
+
         public override void CalculateWeight()
         {
             string regExMatch = NEEDS_TO_MATCH_THIS;

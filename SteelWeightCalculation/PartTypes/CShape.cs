@@ -10,6 +10,14 @@ namespace SteelWeightCalculation.PartTypes
         public override double length { get { return length; } set => length = value; }
         public override string fullDescription { get { return fullDescription; } set => fullDescription = value; }
 
+        public override void AddChildrenToTotalWeight()
+        {
+            foreach (var item in steelPartChildren)
+            {
+                this.weight += item.weight;
+            }
+        }
+
         public override void CalculateWeight()
         {
             string matchedString = new Regex(NEEDS_TO_MATCH_THIS).Match(fullDescription).ToString();
