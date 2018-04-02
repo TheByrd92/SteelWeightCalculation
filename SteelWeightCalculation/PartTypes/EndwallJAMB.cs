@@ -5,7 +5,7 @@ namespace SteelWeightCalculation.PartTypes
 {
     public class EndwallJAMB : SteelPart
     {
-        public override string descriptionExpression { get { return "\\d+[cC]\\d+.*[xX]\\d+[Gg][Aa]"; } set { } }
+        public override string descriptionExpression { get { return "(ENDWALL JAMB|endwall jamb)"; } set { } }
         public override double weight { get { return weight; } set => weight = value; }
         public override double length { get { return length; } set => length = value; }
         public override string fullDescription { get { return fullDescription; } set => fullDescription = value; }
@@ -13,7 +13,7 @@ namespace SteelWeightCalculation.PartTypes
         public override void CalculateWeight()
         {
             string regExMatch = "\\(.*[Cc].*[xX].*[xX].*\\d+\\'\\-\\d+\\s*\\d*\\/\\d*\\\"\\)";
-            string matchedString = new Regex(regExMatch).Match(description).ToString();
+            string matchedString = new Regex(regExMatch).Match(fullDescription).ToString();
             string regExMatchForLength = "[Xx]\\s*\\d+\'\\-\\d+\\s*\\d+\\/\\d+\\\"";
             string architectLength = new Regex(regExMatchForLength).Match(matchedString).ToString().Replace("X", "").Replace("x", "").Trim();
             matchedString = new Regex(regExMatchForLength).Replace(matchedString, "").Trim();
@@ -34,7 +34,7 @@ namespace SteelWeightCalculation.PartTypes
                 weight = 0.0;
                 return;
             }
-            weight = Math.Round(((((leg * 2) + width) * thickness) * length) * DWGReaderFacilitator.WEIGHT_OF_STEEL, 2);
+            weight = Math.Round(((((leg * 2) + width) * thickness) * length) * DescriptionReader.WEIGHT_OF_STEEL, 2);
         }
     }
 }
