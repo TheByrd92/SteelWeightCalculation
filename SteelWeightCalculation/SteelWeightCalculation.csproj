@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="DescriptionReader.cs" />
     <Compile Include="PartTypes\CShape.cs" />
+    <Compile Include="PartTypes\EndwallCornerColumn.cs" />
     <Compile Include="PartTypes\EndwallJAMB.cs" />
     <Compile Include="PartTypes\EndwallRafter.cs" />
     <Compile Include="PartTypes\Header.cs" />
