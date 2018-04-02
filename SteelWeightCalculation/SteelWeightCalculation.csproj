@@ -48,6 +48,7 @@
     <Compile Include="PartTypes\EndwallJAMB.cs" />
     <Compile Include="PartTypes\EndwallRafter.cs" />
     <Compile Include="PartTypes\Header.cs" />
+    <Compile Include="PartTypes\HotRollWShape.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SteelPart.cs" />
   </ItemGroup>
