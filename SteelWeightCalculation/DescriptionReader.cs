@@ -1,7 +1,5 @@
 ﻿using SteelWeightCalculation.PartTypes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace SteelWeightCalculation
@@ -9,8 +7,7 @@ namespace SteelWeightCalculation
     public class DescriptionReader
     {
         public const double WEIGHT_OF_STEEL = 0.28356481481;
-
-        private Regex rgx;
+        
         private enum SteelParts
         {
             LShape,
