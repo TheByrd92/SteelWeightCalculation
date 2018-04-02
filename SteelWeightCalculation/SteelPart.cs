@@ -1,5 +1,12 @@
 ﻿namespace SteelWeightCalculation
 {
+    public enum DimensionIndices
+    {
+        Width,
+        Legs,
+        Thickness
+    }
+
     public abstract class SteelPart
     {
         public abstract string descriptionExpression { get; set; }
