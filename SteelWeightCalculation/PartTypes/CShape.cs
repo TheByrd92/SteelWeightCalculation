@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace SteelWeightCalculation.PartTypes
 {
@@ -11,7 +12,7 @@ namespace SteelWeightCalculation.PartTypes
 
         public override void CalculateWeight()
         {
-            string matchedString = new Regex(descriptionExpression).Match(fullDescription).ToString();
+            string matchedString = new Regex(NEEDS_TO_MATCH_THIS).Match(fullDescription).ToString();
             string regExMatchForLength = "[Xx]\\s*\\d+\'\\-\\d+\\s*\\d+\\/\\d+\\\"";
             string architectLength = new Regex(regExMatchForLength).Match(matchedString).ToString().Replace("X", "").Replace("x", "").Trim();
             matchedString = new Regex(regExMatchForLength).Replace(matchedString, "").Trim();
@@ -32,7 +33,7 @@ namespace SteelWeightCalculation.PartTypes
                 weight = 0.0;
                 return;
             }
-            weight = System.Math.Round(((((leg * 2) + width) * thickness) * length) * DescriptionReader.WEIGHT_OF_STEEL, 2);
+            weight = Math.Round(((((leg * 2) + width) * thickness) * length) * DescriptionReader.WEIGHT_OF_STEEL, 2);
         }
     }
 }

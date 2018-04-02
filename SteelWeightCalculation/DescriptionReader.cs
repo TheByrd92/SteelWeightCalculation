@@ -22,11 +22,36 @@ namespace SteelWeightCalculation
             Header,
             HotRollWShape
         }
+        /// <summary>
+        ///     Calculate a length value from passed in strings.
+        /// <para >
+        ///     Uses the <see cref="UnitConversion.FeetAndInches.InputNum(object)"/> for calculating the weight.
+        /// </para>
+        /// </summary>
+        /// <param name="possibleLengths">Will return a length. Otherwise -1.</param>
+        /// <returns></returns>
+        public double GetLengthFromArchitectualLength(params string[] possibleLengths)
+        {
+            double toReturn = -1;
+            using (UnitConversion.FeetAndInches ucFaI = new UnitConversion.FeetAndInches())
+            {
+                foreach (string item in possibleLengths)
+                {
+                    toReturn = ucFaI.InputNum(item);
+                    if(toReturn > 0)
+                    {
+                        break;
+                    }
+                }
+            }
+            return toReturn;
+        }
 
         /// <summary>
         /// Calculate a weight value for a part based on description.
         /// </summary>
-        /// <param name="description"></param>
+        /// <param name="description">The full description of your steel part.</param>
+        /// <param name="knownLength">Needs a valid length or weight may not be calculated.</param>
         public void CalculateWeightFor(string description, double knownLength)
         {
             foreach (SteelParts steelParts in Enum.GetValues(typeof(SteelParts)))
