@@ -5,7 +5,7 @@ namespace SteelWeightCalculation.PartTypes
 {
     public class HotRollWShape : SteelPart
     {
-        public override string descriptionExpression { get { return "[Ww]\\d+[Xx]\\d+"; } set { } }
+        public new const string NEEDS_TO_MATCH_THIS = "[Ww]\\d+[Xx]\\d+";
         public override double weight { get { return weight; } set => weight = value; }
         public override double length { get { return length; } set => length = value; }
         public override string fullDescription { get { return fullDescription; } set => fullDescription = value; }
@@ -18,7 +18,7 @@ namespace SteelWeightCalculation.PartTypes
 
         public override void CalculateWeight()
         {
-            string regExMatch = descriptionExpression;
+            string regExMatch = NEEDS_TO_MATCH_THIS;
             string matchedString = new Regex(regExMatch).Match(fullDescription).ToString();
             string regExSplitMatch = "[A-Za-z]";
             string[] dimensions = new Regex(regExSplitMatch).Split(matchedString.Replace("W", "").Replace("w", ""));

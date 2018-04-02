@@ -4,7 +4,7 @@ namespace SteelWeightCalculation.PartTypes
 {
     public class CShape : SteelPart
     {
-        public override string descriptionExpression { get { return "\\d+[cC]\\d+.*[xX]\\d+[Gg][Aa]"; } set { } }
+        public new const string NEEDS_TO_MATCH_THIS = "\\d+[cC]\\d+.*[xX]\\d+[Gg][Aa]";
         public override double weight { get { return weight; } set => weight = value; }
         public override double length { get { return length; } set => length = value; }
         public override string fullDescription { get { return fullDescription; } set => fullDescription = value; }

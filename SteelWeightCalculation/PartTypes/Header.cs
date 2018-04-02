@@ -5,7 +5,7 @@ namespace SteelWeightCalculation.PartTypes
 {
     public class Header : SteelPart
     {
-        public override string descriptionExpression { get { return "(HEADER|header)"; } set { } }
+        public new const string NEEDS_TO_MATCH_THIS = "(HEADER|header)";
         public override double weight { get { return weight; } set => weight = value; }
         public override double length { get { return length; } set => length = value; }
         public override string fullDescription { get { return fullDescription; } set => fullDescription = value; }

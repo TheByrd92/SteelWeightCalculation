@@ -21,7 +21,7 @@
             HotRollWShape
         }
 
-        public abstract string descriptionExpression { get; set; }
+        public const string NEEDS_TO_MATCH_THIS = "";
         public abstract double weight { get; set; }
         public abstract double length { get; set; }
         public abstract string fullDescription { get; set; }

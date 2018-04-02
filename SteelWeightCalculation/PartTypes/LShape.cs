@@ -5,14 +5,14 @@ namespace SteelWeightCalculation.PartTypes
 {
     public class LShape : SteelPart
     {
-        public override string descriptionExpression { get { return "([lL]\\d+[xX]\\d+[xX]\\d+\\/\\d+)|([lL]\\d+[xX]\\d+[xX].*[Gg][Aa])"; } set { } }
+        public new const string NEEDS_TO_MATCH_THIS = "([lL]\\d+[xX]\\d+[xX]\\d+\\/\\d+)|([lL]\\d+[xX]\\d+[xX].*[Gg][Aa])";
         public override double weight { get { return weight; } set => weight = value; }
         public override double length { get { return length; } set => length = value; }
         public override string fullDescription { get { return fullDescription; } set => fullDescription = value; }
 
         public override void CalculateWeight()
         {
-            string regExMatch = descriptionExpression;
+            string regExMatch = NEEDS_TO_MATCH_THIS;
             string matchedString = new Regex(regExMatch).Match(fullDescription).ToString();
             string regExSplitMatch = "[A-Za-z]";
             string[] dimensions = new Regex(regExSplitMatch).Split(matchedString.Replace("L", "").Replace("l", ""));
