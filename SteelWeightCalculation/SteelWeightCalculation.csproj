@@ -46,6 +46,7 @@
     <Compile Include="DescriptionReader.cs" />
     <Compile Include="PartTypes\CShape.cs" />
     <Compile Include="PartTypes\EndwallJAMB.cs" />
+    <Compile Include="PartTypes\EndwallRafter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SteelPart.cs" />
   </ItemGroup>
