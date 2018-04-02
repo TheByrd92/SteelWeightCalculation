@@ -23,10 +23,6 @@ namespace SteelWeightCalculation
             HotRollWShape
         }
 
-        private bool IsKnownPart()
-        {
-            return false;
-        }
         /// <summary>
         /// Calculate a weight value for a part based on description.
         /// </summary>
@@ -40,6 +36,7 @@ namespace SteelWeightCalculation
                 switch (steelParts)
                 #region SteelPartMatchingCasting
                 {
+                    #region AlreadyCreated (Last Added: HotRollWShape)
                     case SteelParts.LShape:
                         LShape lShape;
                         regex = new Regex(LShape.NEEDS_TO_MATCH_THIS);
@@ -112,6 +109,7 @@ namespace SteelWeightCalculation
                             toCalculate = hotRollWShape;
                         }
                         break;
+                        #endregion
                 }
                 #endregion
                 if (toCalculate != null)
