@@ -10,12 +10,12 @@ namespace SteelWeightCalculation.PartTypes
 
         public override void AddChildrenToTotalWeight()
         {
-            throw new NotImplementedException();
+            
         }
 
         public override void CalculateWeight()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
