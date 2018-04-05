@@ -48,6 +48,14 @@ namespace SteelWeightCalculation
             return toReturn;
         }
 
+        public int GetGaugeFromDescription(string description)
+        {
+            int toReturn = -1;
+            Regex reggie = new Regex("(\\d+)(?=[Gg][Aa])");
+            int.TryParse(reggie.Match(description).ToString(), out toReturn);
+            return toReturn;
+        }
+
         /// <summary>
         /// Calculate a weight value for a part based on description.
         /// </summary>
@@ -57,6 +65,7 @@ namespace SteelWeightCalculation
         public double CalculateWeightFor(string description, double knownLength, List<SteelPart> possibleChildren = null)
         {
             double toReturn = -1;
+            bool foundWeight = false;
             try
             {
                 SteelPart toCalculate = null;
@@ -65,7 +74,8 @@ namespace SteelWeightCalculation
                     if (description.Contains("BUILT UP") ||
                         description.Contains("built up") ||
                         description.Contains("BUILT-UP") ||
-                        description.Contains("built-up"))
+                        description.Contains("built-up") ||
+                        foundWeight)
                         break;
                     Regex regex;
                     switch (steelParts)
@@ -79,6 +89,7 @@ namespace SteelWeightCalculation
                             {
                                 lShape = new LShape();
                                 toCalculate = lShape;
+                                foundWeight = true;
                                 break;
                             }
                             continue;
@@ -89,6 +100,7 @@ namespace SteelWeightCalculation
                             {
                                 zShape = new ZShape();
                                 toCalculate = zShape;
+                                foundWeight = true;
                                 break;
                             }
                             continue;
@@ -99,6 +111,7 @@ namespace SteelWeightCalculation
                             {
                                 cShape = new CShape();
                                 toCalculate = cShape;
+                                foundWeight = true;
                                 break;
                             }
                             continue;
@@ -109,6 +122,7 @@ namespace SteelWeightCalculation
                             {
                                 endwallRafter = new EndwallRafter();
                                 toCalculate = endwallRafter;
+                                foundWeight = true;
                                 break;
                             }
                             continue;
@@ -119,6 +133,7 @@ namespace SteelWeightCalculation
                             {
                                 endwallCornerColumn = new EndwallCornerColumn();
                                 toCalculate = endwallCornerColumn;
+                                foundWeight = true;
                                 break;
                             }
                             continue;
@@ -129,16 +144,7 @@ namespace SteelWeightCalculation
                             {
                                 endwallJAMB = new EndwallJAMB();
                                 toCalculate = endwallJAMB;
-                                break;
-                            }
-                            continue;
-                        case SteelParts.Header:
-                            Header header;
-                            regex = new Regex(Header.NEEDS_TO_MATCH_THIS);
-                            if (regex.IsMatch(description))
-                            {
-                                header = new Header();
-                                toCalculate = header;
+                                foundWeight = true;
                                 break;
                             }
                             continue;
@@ -149,6 +155,7 @@ namespace SteelWeightCalculation
                             {
                                 hotRollWShape = new HotRollWShape();
                                 toCalculate = hotRollWShape;
+                                foundWeight = true;
                                 break;
                             }
                             continue;
@@ -159,6 +166,7 @@ namespace SteelWeightCalculation
                             {
                                 hotRollCShape = new HotRollCShape();
                                 toCalculate = hotRollCShape;
+                                foundWeight = true;
                                 break;
                             }
                             continue;
@@ -169,6 +177,7 @@ namespace SteelWeightCalculation
                             {
                                 isShape = new ISShape();
                                 toCalculate = isShape;
+                                foundWeight = true;
                                 break;
                             }
                             continue;
