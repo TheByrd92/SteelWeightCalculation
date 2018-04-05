@@ -5,7 +5,7 @@ namespace SteelWeightCalculation.PartTypes
 {
     public class CShape : SteelPart
     {
-        public new const string NEEDS_TO_MATCH_THIS = "((\\d+[cC]\\d+.*[xX]\\d+[Gg][Aa])|(\\d+[Xx]\\d+[.]{1}\\d+[Cc]\\d+))";
+        public new const string NEEDS_TO_MATCH_THIS = "[\u0028]((\\d+( |)[cC]( |)\\d+.*( |)[xX]( |)\\d+[Gg][Aa])|(\\d+( |)[Xx]( |)\\d+[.]{1}\\d+[Cc]\\d+))";
         public override double weight { get; set; }
         public override double length { get; set; }
         public override string fullDescription { get; set; }
