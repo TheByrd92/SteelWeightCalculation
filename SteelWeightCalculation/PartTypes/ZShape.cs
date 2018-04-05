@@ -5,9 +5,9 @@ namespace SteelWeightCalculation.PartTypes
     public class ZShape : SteelPart
     {
         public new const string NEEDS_TO_MATCH_THIS = "([zZ]\\d+[xX]\\d+[xX]\\d+\\/\\d+)|(\\d*[Zz].*[Xx].*[Gg][Aa])";
-        public override double weight { get { return weight; } set => weight = value; }
-        public override double length { get { return length; } set => length = value; }
-        public override string fullDescription { get { return fullDescription; } set => fullDescription = value; }
+        public override double weight { get; set; }
+        public override double length { get; set; }
+        public override string fullDescription { get; set; }
 
         public override void AddChildrenToTotalWeight()
         {

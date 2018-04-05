@@ -3,9 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace SteelWeightCalculation.PartTypes
 {
-    public class LShape : SteelPart
+    public class ISShape : SteelPart
     {
-        public new const string NEEDS_TO_MATCH_THIS = "([lL]\\d+[xX]\\d+[xX]\\d+\\/\\d+)|([lL]\\d+[xX]\\d+[xX].*[Gg][Aa])";
+        public new const string NEEDS_TO_MATCH_THIS = "(\\d+( |-)\\d+\\/\\d+\")( [Ii][.][Ss][.] [X] )(\\d+( |-)\\d+\\/\\d+\")( [X] \\d+[Gg][Aa])";
         public override double weight { get; set; }
         public override double length { get; set; }
         public override string fullDescription { get; set; }
@@ -20,18 +20,21 @@ namespace SteelWeightCalculation.PartTypes
 
         public override void CalculateWeight()
         {
-            string regExMatch = NEEDS_TO_MATCH_THIS;
-            string matchedString = new Regex(regExMatch).Match(fullDescription).ToString();
+            string matchedString = new Regex(NEEDS_TO_MATCH_THIS).Match(fullDescription).ToString();
+            string removePatterns = "([Ii][.][Ss][.])|([Gg][Aa])";
+            string cleanMatchedString = new Regex(removePatterns).Replace(matchedString, "").Trim();
             string regExSplitMatch = "[A-Za-z]";
-            string[] dimensions = new Regex(regExSplitMatch).Split(matchedString.Replace("L", "").Replace("l", ""));
+            string[] dimensions = new Regex(regExSplitMatch).Split(cleanMatchedString);
             //Should get three different numbers only
             double width = 0.0;
             double leg = 0.0;
             double thickness = 0.0;
             using (UnitConversion.FeetAndInches uc = new UnitConversion.FeetAndInches())
             {
-                width = uc.InputNum(dimensions[(int)DimensionIndices.Width] + "\"");
-                leg = uc.InputNum(dimensions[(int)DimensionIndices.Legs] + "\"");
+                width = uc.InputNum(dimensions[(int)DimensionIndices.Width].Trim());
+                double.TryParse(dimensions[(int)DimensionIndices.Legs].Trim(), out leg);
+                if (leg <= 0)
+                    leg = uc.InputNum(dimensions[(int)DimensionIndices.Legs].Trim());
                 thickness = uc.GetGaugeInDecimal(dimensions[(int)DimensionIndices.Thickness].Trim());
             }
             if (length <= 0 || width <= 0 || leg <= 0 || thickness <= 0)
@@ -39,7 +42,7 @@ namespace SteelWeightCalculation.PartTypes
                 weight = 0.0;
                 return;
             }
-            weight = Math.Round((((leg + width) * thickness) * length) * DescriptionReader.WEIGHT_OF_STEEL, 2);
+            weight = Math.Round(((((leg * 2) + width) * thickness) * length) * DescriptionReader.WEIGHT_OF_STEEL, 2);
         }
     }
 }

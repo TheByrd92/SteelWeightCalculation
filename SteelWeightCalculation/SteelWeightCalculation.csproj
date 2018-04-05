@@ -44,14 +44,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DescriptionReader.cs" />
+    <Compile Include="PartTypes\BuiltUpMember.cs" />
     <Compile Include="PartTypes\ChildBlankPart.cs" />
     <Compile Include="PartTypes\CShape.cs" />
     <Compile Include="PartTypes\EndwallCornerColumn.cs" />
     <Compile Include="PartTypes\EndwallJAMB.cs" />
     <Compile Include="PartTypes\EndwallRafter.cs" />
     <Compile Include="PartTypes\Header.cs" />
+    <Compile Include="PartTypes\HotRollCShape.cs" />
     <Compile Include="PartTypes\HotRollWShape.cs" />
     <Compile Include="PartTypes\LShape.cs" />
+    <Compile Include="PartTypes\ISShape.cs" />
     <Compile Include="PartTypes\ZShape.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SteelPart.cs" />

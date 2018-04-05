@@ -3,9 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace SteelWeightCalculation.PartTypes
 {
-    public class HotRollWShape : SteelPart
+    public class HotRollCShape : SteelPart
     {
-        public new const string NEEDS_TO_MATCH_THIS = "[Ww]\\d+[Xx]\\d+";
+        public new const string NEEDS_TO_MATCH_THIS = "[Cc]\\d+[Xx]\\d+[.]?\\d+";
         public override double weight { get; set; }
         public override double length { get; set; }
         public override string fullDescription { get; set; }
@@ -29,7 +29,7 @@ namespace SteelWeightCalculation.PartTypes
             string regExMatch = NEEDS_TO_MATCH_THIS;
             string matchedString = new Regex(regExMatch).Match(fullDescription).ToString();
             string regExSplitMatch = "[A-Za-z]";
-            string[] dimensions = new Regex(regExSplitMatch).Split(matchedString.Replace("W", "").Replace("w", ""));
+            string[] dimensions = new Regex(regExSplitMatch).Split(matchedString.Replace("C", "").Replace("c", ""));
             //Should get three different numbers only
             double depth = 0.0;
             double perFoot = 0.0;
