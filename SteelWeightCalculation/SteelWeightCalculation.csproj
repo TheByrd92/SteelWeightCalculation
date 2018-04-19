@@ -52,6 +52,7 @@
     <Compile Include="PartTypes\EndwallRafter.cs" />
     <Compile Include="PartTypes\HotRollCShape.cs" />
     <Compile Include="PartTypes\HotRollWShape.cs" />
+    <Compile Include="PartTypes\HSSShape.cs" />
     <Compile Include="PartTypes\LShape.cs" />
     <Compile Include="PartTypes\ISShape.cs" />
     <Compile Include="PartTypes\ZShape.cs" />

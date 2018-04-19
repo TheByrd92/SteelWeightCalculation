@@ -21,7 +21,8 @@ namespace SteelWeightCalculation
             HotRollWShape,
             BuiltUpMember,
             HotRollCShape,
-            ISShape
+            ISShape,
+            HSSShape
         }
         /// <summary>
         ///     Calculate a length value from passed in strings.
@@ -81,7 +82,7 @@ namespace SteelWeightCalculation
                     switch (steelParts)
                     #region SteelPartMatchingCasting
                     {
-                        #region AlreadyCreated (Last Added: ISShape)
+                        #region AlreadyCreated (Last Added: HSSShape)
                         case SteelParts.LShape:
                             LShape lShape;
                             regex = new Regex(LShape.NEEDS_TO_MATCH_THIS);
@@ -177,6 +178,17 @@ namespace SteelWeightCalculation
                             {
                                 isShape = new ISShape();
                                 toCalculate = isShape;
+                                foundWeight = true;
+                                break;
+                            }
+                            continue;
+                        case SteelParts.HSSShape:
+                            HSSShape hssShape;
+                            regex = new Regex(HSSShape.NEEDS_TO_MATCH_THIS);
+                            if (regex.IsMatch(description))
+                            {
+                                hssShape = new HSSShape();
+                                toCalculate = hssShape;
                                 foundWeight = true;
                                 break;
                             }
